@@ -1,4 +1,4 @@
-# TODO
+# Problem 1
 
 Add a controller action that creates a User via a JSON request and return back the JSON object just created. Also, add an index action that lists out all of the current users.
 
