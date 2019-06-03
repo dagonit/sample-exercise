@@ -1,6 +1,11 @@
 class Api::V1::UsersController < ApplicationController
   def create
-    render json: User.create(user_params), status: 201
+    @user = User.create(user_params)
+    if @user.save
+      render json: @user, status: 201
+    else
+      render json: "Please try again", status: 422
+    end
   end
 
   private
