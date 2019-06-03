@@ -21,4 +21,5 @@ describe 'as a user' do
     expect(user[:social_security_number]).to eq(params[:social_security_number])
     expect(User.all.count).to eq(1)
   end
+
 end
