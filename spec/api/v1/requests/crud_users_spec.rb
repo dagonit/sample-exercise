@@ -55,6 +55,7 @@ describe "User" do
 
       expect(response.body).to include(user1.email)
       expect(response.body).to include(user2.email)
+      expect(response.body).to_not include("ssn")
     end
   end
   
