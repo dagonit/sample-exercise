@@ -7,7 +7,7 @@ describe "User" do
                           last_name: "Joel", 
                           social_security_number: "123456789",
                           email: "email@gmail.com"}
-      post api_v1_users(user_credentials)
+      post api_v1_users_path(user_credentials)
 
       user = User.find_by(social_security_number: "123456789")
       expect(response.body).to include(user.social_security_number)
@@ -18,7 +18,7 @@ describe "User" do
                           last_name: "Joel", 
                           social_security_number: "123456789",
                           email: "email@gmail.com"}
-      post api_v1_users(user_credentials)
+      post api_v1_users_path(user_credentials)
 
       user = User.find_by(social_security_number: "123456789")
       expect(response.body).to include(user.social_security_number)
@@ -29,8 +29,8 @@ describe "User" do
                           last_name: "Joel", 
                           social_security_number: "123-45-6789",
                           email: "email@gmail.com"}
-                          
-      post api_v1_users(user_credentials)
+
+      post api_v1_users_path(user_credentials)
 
       user = User.find_by(social_security_number: "123456789")
       
