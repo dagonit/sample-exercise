@@ -9,7 +9,7 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def index
-    render json: User.all
+    render json: UserSerializer.new(User.all)
   end
 
   private
