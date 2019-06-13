@@ -19,9 +19,10 @@ ActiveRecord::Schema.define(version: 20190613172531) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "email"
-    t.string   "social_security_number"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "encrypted_ssn"
+    t.string   "encrypted_ssn_iv"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
 end

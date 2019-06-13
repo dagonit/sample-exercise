@@ -15,7 +15,7 @@ class Api::V1::UsersController < ApplicationController
   private
 
   def user_params
-    params[:social_security_number].delete!("-") if params[:social_security_number].include?("-")
-    params.permit(:email, :first_name, :last_name, :social_security_number)
+    params[:ssn].delete!("-") if params[:ssn].include?("-")
+    params.permit(:email, :first_name, :last_name, :ssn)
   end
 end
