@@ -9,10 +9,13 @@ describe "Users API" do
     expect(response).to be_successful
     expect(response.status).to eq(201)
     body = JSON.parse(response.body, symbolize_names: true)
-    expect(body[:api_key]).to be_a(String)
+    expect(body[:first_name]).to eq("John")
+    expect(body[:last_name]).to eq("Doe")
+    expect(body[:email]).to eq("jdoe@email.com")
+    expect(body[:social_security_number]).to eq(123456789)
   end
 
-  xit "returns an error code with invalid user creation" do
+  it "returns an error code with invalid user creation" do
     #user tries to register without a last name
     post "/api/v1/users", params: {first_name: "John",
                                    email: "jdoe@email.com",
