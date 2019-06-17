@@ -16,6 +16,13 @@ class Api::V1::UsersController < ApplicationController
   private
 
   def user_params
-    params.permit(:first_name, :last_name, :email, :social_security_number)
+    valid_params = params.permit(:first_name, :last_name, :email, :social_security_number)
+    sanitize(valid_params)
+  end
+
+  def sanitize(params)
+    clean_ssn = params["social_security_number"].tr('-', '')
+    params[:social_security_number] = clean_ssn
+    params
   end
 end
