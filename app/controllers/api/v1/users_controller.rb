@@ -4,7 +4,7 @@ class Api::V1::UsersController < ApplicationController
     if user.save
       render status: 201, json: user
     else
-      render status: 409, json: credentials_conflict
+      render status: 409, json: { error: "User could not be saved with those credentials." }
     end
   end
 

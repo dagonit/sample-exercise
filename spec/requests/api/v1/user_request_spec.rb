@@ -6,7 +6,6 @@ describe "Users API" do
                                    last_name: "Doe",
                                    email: "jdoe@email.com",
                                    social_security_number: "123456789"}
-    expect(response).to be_successful
     expect(response.status).to eq(201)
     body = JSON.parse(response.body, symbolize_names: true)
     expect(body[:first_name]).to eq("John")
@@ -16,13 +15,23 @@ describe "Users API" do
   end
 
   it "returns an error code with invalid user creation" do
-    #user tries to register without a last name
+    #user tries to register with invalid SSN
     post "/api/v1/users", params: {first_name: "John",
+                                   last_name: "Doe",
                                    email: "jdoe@email.com",
-                                   social_security_number: "123456789"}
-    expect(response).to_not be_successful
+                                   social_security_number: "456789"}
     body = JSON.parse(response.body, symbolize_names: true)
     expect(body[:error]).to eq("User could not be saved with those credentials.")
     expect(response.status).to eq(409)
+  end
+
+  it "returns an index of users" do
+    User.create(first_name: "John", last_name: "Doe", email: "jdoe@email.com", social_security_number: "123456789")
+    User.create(first_name: "Jane", last_name: "Smiley", email: "jsmiley@email.com", social_security_number: "987654321")
+    User.create(first_name: "Barack", last_name: "Obama", email: "mrprez@email.com", social_security_number: "192837465")
+    get "/api/v1/users"
+    expect(response.status).to eq(201)
+    body = JSON.parse(response.body, symbolize_names: true)
+    expect(body.count).to eq(3)
   end
 end
