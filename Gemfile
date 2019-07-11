@@ -14,6 +14,10 @@ gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.0'
 gem 'pry'
 gem 'fast_jsonapi'
+gem 'attr_encrypted'
+gem 'figaro'
+
+
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.5'
