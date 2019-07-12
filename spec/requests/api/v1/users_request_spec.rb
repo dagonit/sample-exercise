@@ -19,6 +19,14 @@ RSpec.describe "Users API", :type => :request do
       post "/api/v1/users", params: {user: user_params}
       expect(response).to have_http_status(201)
     end
+
+    describe 'social security number format' do
+      it 'can accept ssn with dashes and create a new user' do
+      end
+
+      it 'can accept ssn without dashes and create a new user' do
+      end
+    end
   end
 
   context "with invalid user information" do
@@ -34,13 +42,15 @@ RSpec.describe "Users API", :type => :request do
   end
 
   it 'returns an index of all users' do
-    users = create_list(:user, 3)
+    user1 = User.create(first_name: "John", last_name: "Smith", email: "js@example.com", ssn: "123456789")
+    user2 = User.create(first_name: "Jack", last_name: "Test", email: "jack@example.com", ssn: "123-45-6789")
+    user3 = User.create(first_name: "Jill", last_name: "Test2", email: "jill@example.com", ssn: "000000000")
 
     get "/api/v1/users"
     response_body = JSON.parse(response.body)
     expect(response.status).to eq(200)
     expect(response_body.size).to eq(3)
-    expect(response_body[0]["first_name"]).to eq(users[0].first_name)
+    expect(response_body[0]["first_name"]).to eq(user1.first_name)
   end
 
 

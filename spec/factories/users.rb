@@ -4,6 +4,6 @@ FactoryBot.define do
     sequence(:last_name) { |n| "Test LasttName #{n}" }
     sequence(:email) {|n| "user_#{n}@gmail.com"}
     sequence(:encrypted_ssn) { |n| "encrypted_ssn#{n}" }
-    sequence(:encrypted_ssn_iv) { |n| "encrypted_ssn_iv#{n}"}
+    sequence(:encrypted_ssn_iv) { "Ebcby9ymSRuMehXP\n"}
   end
 end
