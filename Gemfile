@@ -18,7 +18,6 @@ gem 'attr_encrypted'
 gem 'figaro'
 
 
-
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
@@ -38,6 +37,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'pry'
   gem 'factory_bot_rails'
+  gem 'shoulda-matchers'
 end
 
 group :development do
