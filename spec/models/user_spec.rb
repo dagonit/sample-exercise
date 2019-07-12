@@ -12,7 +12,7 @@ RSpec.describe User, type: :model do
   context 'email validation' do
     describe "when email format is invalid" do
       user = User.new(first_name: "John", last_name: "Smith", ssn: "000-00-0000")
-      it "should be invalid" do
+      it "should be an invalid user" do
         addresses = %w[user@foo,com user_at_foo.org example.user@foo.
                        foo@bar_baz.com foo@bar+baz.com]
         addresses.each do |invalid_address|
