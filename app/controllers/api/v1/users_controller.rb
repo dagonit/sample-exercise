@@ -8,6 +8,11 @@ class Api::V1::UsersController < ApplicationController
     end
   end
 
+  def index
+    render json: User.all, status: 200
+
+  end
+
   private
 
   def user_params
