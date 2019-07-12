@@ -5,5 +5,6 @@ class User < ApplicationRecord
                         :email,
                         :encrypted_ssn,
                         :encrypted_ssn_iv
+  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
 
 end
