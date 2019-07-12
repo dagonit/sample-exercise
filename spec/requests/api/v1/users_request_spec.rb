@@ -69,9 +69,10 @@ RSpec.describe "Users API", :type => :request do
 
     get "/api/v1/users"
     response_body = JSON.parse(response.body)
+
     expect(response.status).to eq(200)
-    expect(response_body.size).to eq(3)
-    expect(response_body[0]["first_name"]).to eq(user1.first_name)
+    expect(response_body["data"].size).to eq(3)
+    expect(response_body["data"][0]["attributes"]["first_name"]).to eq(user1.first_name)
   end
 
 
