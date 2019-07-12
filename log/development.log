@@ -367,3 +367,50 @@ Processing by Api::V1::UsersController#index as */*
 Completed 200 OK in 5ms (Views: 0.1ms | ActiveRecord: 3.1ms)
 
 
+Started GET "/api/v1/users?=" for ::1 at 2019-07-12 15:08:05 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (1.9ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by Api::V1::UsersController#index as */*
+  Parameters: {"user"=>{"first_name"=>"Martin", "last_name"=>"Mercer", "email"=>"email@emjlldsadfadjail.com", "ssn"=>"122-11-1234"}}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+Completed 200 OK in 14ms (Views: 0.3ms | ActiveRecord: 7.3ms)
+
+
+Started POST "/api/v1/users?=" for ::1 at 2019-07-12 15:08:16 -0600
+Processing by Api::V1::UsersController#create as */*
+  Parameters: {"user"=>{"first_name"=>"Martin", "last_name"=>"Mercer", "email"=>"email@emjlldsadfaddfadfajail.com", "ssn"=>"122-11-1234"}}
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (0.7ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "email@emjlldsadfaddfadfajail.com"], ["LIMIT", 1]]
+  [1m[35mSQL (8.8ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "encrypted_ssn", "encrypted_ssn_iv", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["first_name", "Martin"], ["last_name", "Mercer"], ["encrypted_ssn", "k5DdSu1irIx9Cka7BKdObgrx0z/dSjWjEg==\n"], ["encrypted_ssn_iv", "mIewinFK2R2CXAJl\n"], ["email", "email@emjlldsadfaddfadfajail.com"], ["created_at", "2019-07-12 21:08:16.915626"], ["updated_at", "2019-07-12 21:08:16.915626"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+Completed 201 Created in 39ms (Views: 0.1ms | ActiveRecord: 10.3ms)
+
+
+Started POST "/api/v1/users?=" for ::1 at 2019-07-12 15:10:19 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by Api::V1::UsersController#create as */*
+  Parameters: {"user"=>{"first_name"=>"Martin", "last_name"=>"Mercer", "email"=>"email@emjlldsadfaddfadfajail.com", "ssn"=>"AAA"}}
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (1.0ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "email@emjlldsadfaddfadfajail.com"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+Completed 400 Bad Request in 31ms (Views: 0.3ms | ActiveRecord: 8.0ms)
+
+
+Started POST "/api/v1/users?=" for ::1 at 2019-07-12 15:10:31 -0600
+Processing by Api::V1::UsersController#create as */*
+  Parameters: {"user"=>{"first_name"=>"Martin", "last_name"=>"Mercer", "email"=>"email@emjlldsadfaddfadfajail.com", "ssn"=>"012345678"}}
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "email@emjlldsadfaddfadfajail.com"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+Completed 400 Bad Request in 6ms (Views: 0.2ms | ActiveRecord: 1.0ms)
+
+
+Started POST "/api/v1/users?=" for ::1 at 2019-07-12 15:10:35 -0600
+Processing by Api::V1::UsersController#create as */*
+  Parameters: {"user"=>{"first_name"=>"Martin", "last_name"=>"Mercer", "email"=>"email@emjlldsadfaddfadfaFDFjail.com", "ssn"=>"012345678"}}
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "email@emjlldsadfaddfadfaFDFjail.com"], ["LIMIT", 1]]
+  [1m[35mSQL (1.4ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "encrypted_ssn", "encrypted_ssn_iv", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["first_name", "Martin"], ["last_name", "Mercer"], ["encrypted_ssn", "otzZoNnDSdVK7WU2TIzgdEbAbBgThtgVsA==\n"], ["encrypted_ssn_iv", "szExkbpd0Tat8OHU\n"], ["email", "email@emjlldsadfaddfadfaFDFjail.com"], ["created_at", "2019-07-12 21:10:35.331243"], ["updated_at", "2019-07-12 21:10:35.331243"]]
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+Completed 201 Created in 9ms (Views: 0.1ms | ActiveRecord: 2.6ms)
+
+
