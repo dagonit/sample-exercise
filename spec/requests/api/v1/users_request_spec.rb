@@ -22,9 +22,30 @@ RSpec.describe "Users API", :type => :request do
 
     describe 'social security number format' do
       it 'can accept ssn with dashes and create a new user' do
+        user_params = { ssn: "000-00-0000", first_name: "John", last_name: "Smith", email: "email@example.com"}
+        post "/api/v1/users", params: {user: user_params}
+        expect(response).to have_http_status(201)
+        expect(User.last.first_name).to eq("John")
       end
 
       it 'can accept ssn without dashes and create a new user' do
+        user_params = { ssn: "000000000", first_name: "Jack", last_name: "Smith", email: "email@example.com"}
+        post "/api/v1/users", params: {user: user_params}
+        expect(response).to have_http_status(201)
+        expect(User.last.first_name).to eq("Jack")
+      end
+
+      it 'cannot accept invalid ssn numbers' do
+        user1_params = { ssn: "000", first_name: "Jack", last_name: "Smith", email: "email@example.com"}
+        post "/api/v1/users", params: {user: user1_params}
+        expect(response).to have_http_status(400)
+        expect(JSON.parse(response.body)["errors"][0]).to eq("Ssn is the wrong length (should be 9 characters)")
+
+
+        user2_params = { ssn: "AAAAAAAAA", first_name: "Jack", last_name: "Smith", email: "email@example.com"}
+        post "/api/v1/users", params: {user: user2_params}
+        expect(response).to have_http_status(400)
+        expect(JSON.parse(response.body)["errors"][0]).to eq("Ssn should only have digits.")
       end
     end
   end
