@@ -11,11 +11,11 @@ class User < ApplicationRecord
 
   validates :ssn, length: {is: 9},
                   presence: true,
-                  format: { with: /\A\d+\z/, message: "Social security number should only have digits."}
+                  format: { with: /\A\d+\z/, message: "should only have digits."}
 
   before_validation(on: :create) do
     if self.ssn
-      self.ssn = self.ssn.delete('-') if self.ssn
-    end 
+      self.ssn = self.ssn.delete('-')
+    end
   end
 end
