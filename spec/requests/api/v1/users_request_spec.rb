@@ -33,6 +33,17 @@ RSpec.describe "Users API", :type => :request do
     end
   end
 
+  it 'returns an index of all users' do
+    users = create_list(:user, 3)
+
+    get "/api/v1/users"
+    response_body = JSON.parse(response.body)
+
+    expect(response.status).to eq(200)
+    expect(response_body.size).to eq(3)
+    expect(response_body[0]["first_name"]).to eq(users[0].first_name)
+  end
+
 
 
 
