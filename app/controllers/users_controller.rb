@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   def create
     @user = User.create(user_params)
     if @user.errors.any?
-      render json: @user.errors
+      render json: @user.errors, status: 422
     else 
       render json: @user, status: 200
     end
