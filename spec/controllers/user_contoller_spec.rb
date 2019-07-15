@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe UsersController, type: :contoller do
+  
   context 'VALID user call to CREATE' do
     it 'a user can be successfully created' do
       expect(User.create!(first_name: 'kendall', last_name: 'willard', email: 'kcw@test.com', social_security_number: '123-45-6789')).to be_valid     
@@ -18,4 +19,5 @@ RSpec.describe UsersController, type: :contoller do
       user = User.create!(first_name: 'kendall', last_name: 'willard', email: 'kcw@test.com', social_security_number: '123-454-6789')
     end
   end
+
 end
