@@ -46,7 +46,7 @@ RSpec.describe User, type: :model do
   end
 
   it "is not valid with a social security number in an inconsistent format" do
-    subject.social_security_number = "123-456789"
+    subject.social_security_number = "12345-6789"
     expect(subject).to_not be_valid
   end
 
