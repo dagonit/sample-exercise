@@ -6,5 +6,5 @@ class User < ApplicationRecord
     format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :social_security_number,
     presence: true,
-    format: { with: /([0-9]{3}([ \-]?)[0-9]{2}([ \-]?)[0-9]{4})/ }
+    format: { with: /[0-9]{3}([-]?)[0-9]{2}\1[0-9]{4}/ }
 end
